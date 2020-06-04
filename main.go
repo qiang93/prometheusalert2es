@@ -137,6 +137,9 @@ func DoRequest(method,url string, body io.Reader) int8{
 		return ng
 	}
 	req.SetBasicAuth(esusername, espasswd)
+	logger.Println("[Debug] esusername:", esusername )
+	logger.Println("[Debug] espasswd:", espasswd )
+	logger.Println("[Debug] esurl:", esurl )
 	//We just use GET/PUT/POST
 	req.Header.Set("Content-Type", "application/json")
 	resp,err := client.Do(req)
