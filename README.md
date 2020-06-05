@@ -52,3 +52,8 @@ alerting:
 
 Make sure elasticsearch URI's scheme is `https`, and you have the `username` and `password` for elasticsearch basic authentication.
 The alerts messages will store in `/prometheus_alert/_doc/${uuid}`
+
+#### Debug
+```
+curl -X PUT -d @'test.json' -H 'Content-Type: application/json' 'http://qianghu:xxxxxxxxx@stg-elasticsearch.deeproute.ai/_template/custom_test?pretty'
+```

@@ -68,7 +68,6 @@ func (th *AlertHandler)ServeHTTP(w http.ResponseWriter, r *http.Request){
   "settings": {
     "number_of_shards": 2,
     "number_of_replicas": 0,
-    "index.lifecycle.name": "prometheus_alert*",
     "index.refresh_interval": "10s",
     "index.query.default_field": "groupLabels.alertname"
   },
