@@ -66,10 +66,7 @@ func (th *AlertHandler)ServeHTTP(w http.ResponseWriter, r *http.Request){
 {
   "index_patterns": ["prometheus_alert*"],
   "settings": {
-    "number_of_shards": 2,
-    "number_of_replicas": 0,
-    "index.refresh_interval": "10s",
-    "index.query.default_field": "groupLabels.alertname"
+    "number_of_shards": 1
   },
   "mappings": {
     "_doc": {
@@ -101,7 +98,7 @@ func (th *AlertHandler)ServeHTTP(w http.ResponseWriter, r *http.Request){
 }`)
 		newBody := bytes.NewBuffer(reqbody)
 		ret := DoRequest(http.MethodPost,esurl+"/_template/" + template,newBody)
-		logger.Println("[Debug] format:", esurl+"/_template/" + template,newBody)
+		logger.Println("[Debug] format:", esurl+"/_template/" + template)
 		if ok != ret{
 			logger.Println("[Error] Create template failed")
 			return
@@ -137,9 +134,9 @@ func DoRequest(method,url string, body io.Reader) int8{
 		return ng
 	}
 	req.SetBasicAuth(esusername, espasswd)
-	logger.Println("[Debug] esusername:", esusername )
-	logger.Println("[Debug] espasswd:", espasswd )
-	logger.Println("[Debug] esurl:", esurl )
+	// logger.Println("[Debug] esusername:", esusername )
+	// logger.Println("[Debug] espasswd:", espasswd )
+	// logger.Println("[Debug] esurl:", esurl )
 	//We just use GET/PUT/POST
 	req.Header.Set("Content-Type", "application/json")
 	resp,err := client.Do(req)

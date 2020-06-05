@@ -56,4 +56,5 @@ The alerts messages will store in `/prometheus_alert/_doc/${uuid}`
 #### Debug
 ```
 curl -X PUT -d @'test.json' -H 'Content-Type: application/json' 'http://qianghu:xxxxxxxxx@stg-elasticsearch.deeproute.ai/_template/custom_test?pretty'
+curl -XDELETE "https://stg-elasticsearch.deeproute.ai:443/_template/prometheus_alert_template" -u qianghu
 ```
