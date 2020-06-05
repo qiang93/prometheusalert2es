@@ -101,7 +101,7 @@ func (th *AlertHandler)ServeHTTP(w http.ResponseWriter, r *http.Request){
 }`)
 		newBody := bytes.NewBuffer(reqbody)
 		ret := DoRequest(http.MethodPost,esurl+"/_template/" + template,newBody)
-		logger.Println("[Debug] format:", ret)
+		logger.Println("[Debug] format:", esurl+"/_template/" + template,newBody)
 		if ok != ret{
 			logger.Println("[Error] Create template failed")
 			return
